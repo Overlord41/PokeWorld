@@ -1,9 +1,9 @@
-import express from 'express'
+import { Router, Request, Response } from 'express'
 
-const router = express.Router()
+const router: Router = Router()
 
-router.get('getAllPokemon', (_req, res)=>{
-    res.send('All pokemons')
+router.get('/getAllPokemon', (_req: Request, res: Response) => {
+  res.send('All pokemons')
 })
 
 export default router
