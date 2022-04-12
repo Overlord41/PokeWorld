@@ -1,12 +1,10 @@
-import { Router, Request, Response } from 'express'
-import { getUByPK } from '../controllers/usersController'
+import { Router } from 'express'
+import { getUByPK, postUser } from '../controllers/usersController'
 
 const router: Router = Router()
 
 router.get('/getUserByPK', getUByPK)
 
-router.post('/createUser', (_req: Request, res: Response) => {
-  res.send('Create user success')
-})
+router.post('/createUser', postUser)
 
 export default router
