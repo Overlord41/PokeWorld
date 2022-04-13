@@ -1,19 +1,15 @@
-import { Router, Request, Response } from 'express'
-import { GetPokeEvolution } from '../controllers/pokemonController'
-import Pokemon, { InterfacePokemons } from '../models/Pokemons'
+import { Router } from 'express'
+import {
+  filterPokemons,
+  getAllPokemons,
+  GetPokeEvolution,
+} from '../controllers/pokemonController'
 
 const router: Router = Router()
 
-router.get('/getAllPokemon', async (_req: Request, res: Response) => {
-  try {
-    const findAllPokemons: InterfacePokemons[] = await Pokemon.find().select(
-      '-__v'
-    )
-    res.json(findAllPokemons)
-  } catch (error) {
-    console.log(error)
-  }
-})
+router.get('/getAllPokemon', getAllPokemons)
+
+router.get('/filters', filterPokemons)
 
 router.get('/getEvolution', GetPokeEvolution)
 

@@ -8,7 +8,11 @@ export interface InterfaceUser extends mongoose.Document {
 }
 
 const UserSchema = new Schema({
-  NickName: String,
+  NickName: {
+    type: String,
+    trim: true,
+    unique: true,
+  },
   email: { type: String, unique: true, lowercase: true },
   favorites: [Number],
   type: { type: String, default: 'normal', lowercase: true },
