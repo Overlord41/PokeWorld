@@ -1,7 +1,11 @@
 import axios from 'axios'
 import { Request, Response } from 'express'
+import Pokemon, { InterfacePokemons } from '../models/Pokemons'
 
-export const GetPokeEvolution = async (req: Request, res: Response) => {
+export const GetPokeEvolution = async (
+  req: Request,
+  res: Response
+): Promise<void> => {
   const { namePoke } = req.body
   try {
     const findEvos = await axios
@@ -40,4 +44,42 @@ export const GetPokeEvolution = async (req: Request, res: Response) => {
   } catch (error) {
     console.log(error)
   }
+}
+
+export const getAllPokemons = async (
+  _req: Request,
+  res: Response
+): Promise<void> => {
+  const PokemonsXpage: number = 10
+
+  // number of page
+  const page: number = 1
+  // page = page ? page : 1
+  try {
+    const findAllPokemons: InterfacePokemons[] = await Pokemon.find().select(
+      '-__v'
+    )
+
+    // pagination
+    const result: InterfacePokemons[] = findAllPokemons.slice(
+      PokemonsXpage * (page - 1),
+      PokemonsXpage * (page - 1) + PokemonsXpage
+    )
+
+    res.json(result)
+  } catch (error) {
+    console.log(error)
+  }
+}
+
+export const filterPokemons = async (
+  _req: Request,
+  res: Response
+): Promise<void> => {
+  // const GetFilter = await Pokemon.find().all('types', ['grass'])
+  const GetFilter = await Pokemon.find()
+    .where('types')
+    .all(['flying'])
+    .and([{ color: 'green' }, { status: 'ok' }])
+  res.send(GetFilter)
 }

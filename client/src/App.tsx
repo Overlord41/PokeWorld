@@ -15,6 +15,7 @@ const App = () => {
             count is: {count}
           </button>
         </p>
+        <input type="text" disabled={true} />
         <p>
           Edit <code>App.tsx</code> and save to test HMR updates.
         </p>
