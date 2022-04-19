@@ -1,18 +1,31 @@
-import { useState } from "react"
 import logo from "./logo.svg"
 import "./App.css"
-
+import { useAppDispatch, useAppSelector } from "./app/hooks"
+import { increment, sumMore } from "./features/pokemonReducer"
 const App = () => {
-  const [count, setCount] = useState(0)
+  const value = useAppSelector((state) => state.counter.value)
+  const dispatch = useAppDispatch()
 
+  const handleClick = (): void => {
+    dispatch(increment())
+  }
+
+  const handleClick5 = (): void => {
+    dispatch(sumMore(5))
+  }
   return (
     <div className="App">
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
         <p>Hello Vite + React!</p>
         <p>
-          <button type="button" onClick={() => setCount((count) => count + 1)}>
-            count is: {count}
+          <button type="button" onClick={handleClick}>
+            count is: {value}
+          </button>
+        </p>
+        <p>
+          <button type="button" onClick={handleClick5}>
+            Sum More 5
           </button>
         </p>
         <input type="text" disabled={true} />
