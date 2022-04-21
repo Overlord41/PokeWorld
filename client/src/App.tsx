@@ -1,7 +1,10 @@
-import logo from "./logo.svg"
-import "./App.css"
-import { useAppDispatch, useAppSelector } from "./app/hooks"
-import { increment, sumMore } from "./features/pokemonReducer"
+import logo from './logo.svg'
+import './App.css'
+import { useAppDispatch, useAppSelector } from './app/hooks'
+import { increment, sumMore } from './features/Reducers/pokemonReducer'
+import { getCartItems } from './features/Reducers/postsSlice'
+import { useEffect } from 'react'
+
 const App = () => {
   const value = useAppSelector((state) => state.counter.value)
   const dispatch = useAppDispatch()
@@ -13,6 +16,15 @@ const App = () => {
   const handleClick5 = (): void => {
     dispatch(sumMore(5))
   }
+
+  const updatePosts = (): void => {
+    dispatch(getCartItems())
+  }
+
+  useEffect(() => {
+    updatePosts()
+  }, [])
+
   return (
     <div className="App">
       <header className="App-header">
@@ -41,7 +53,7 @@ const App = () => {
           >
             Learn React
           </a>
-          {" | "}
+          {' | '}
           <a
             className="App-link"
             href="https://vitejs.dev/guide/features.html"
