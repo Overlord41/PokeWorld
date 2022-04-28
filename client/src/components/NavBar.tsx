@@ -1,5 +1,5 @@
-import React from 'react'
+import { FC } from 'react'
 
-export const NavBar = () => {
+export const NavBar: FC = () => {
   return <div>NavBar</div>
 }
