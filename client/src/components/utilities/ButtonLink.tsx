@@ -6,6 +6,7 @@ interface Props {
   LinkTo: string
   ColorBase?: string
   ColorHover?: string
+  Text: string
 }
 
 interface PropsBtn {
@@ -32,10 +33,15 @@ const BtnLink = styled.div<PropsBtn>`
   }
 `
 
-export const ButtonLink: FC<Props> = ({ LinkTo, ColorBase, ColorHover }) => {
+export const ButtonLink: FC<Props> = ({
+  LinkTo,
+  ColorBase,
+  ColorHover,
+  Text,
+}) => {
   return (
     <BtnLink ColorBase={ColorBase} ColorHover={ColorHover}>
-      <NavLink to={LinkTo}>Start</NavLink>
+      <NavLink to={LinkTo}>{Text}</NavLink>
     </BtnLink>
   )
 }

@@ -28,7 +28,7 @@ export const LandingPage = () => {
           style={{ width: '340px', height: '120px', marginBottom: '50px' }}
         />
       </div>
-      <ButtonLink LinkTo="/home" ColorBase="#57CD4C" />
+      <ButtonLink LinkTo="/home" ColorBase="#57CD4C" Text="Start" />
     </LandPage>
   )
 }
